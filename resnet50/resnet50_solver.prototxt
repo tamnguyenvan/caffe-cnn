@@ -13,4 +13,4 @@ momentum: 0.9
 weight_decay: 0.0001
 snapshot: 50000
 snapshot_prefix: "/content/snapshot/resnet50"
-solver_mode: GPU
+solver_mode: CPU
