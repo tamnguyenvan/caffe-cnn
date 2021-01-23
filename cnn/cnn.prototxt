@@ -248,3 +248,9 @@ layer {
   bottom: "label"
   top: "loss"
 }
+layer {
+  name: "prob"
+  type: "Softmax"
+  bottom: "fc6"
+  top: "prob"
+}
