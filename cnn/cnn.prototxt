@@ -1,7 +1,3 @@
-# Enter your network definition here.
-# Use Shift+Enter to update the visualization.
-# Enter your network definition here.
-# Use Shift+Enter to update the visualization.
 name: "CNN"
 layer {
   name: "data"
@@ -56,12 +52,6 @@ layer {
     kernel_size: 7
     stride: 2
   }
-  param {
-    lr_mult: 0
-  }
-  param {
-    lr_mult: 0
-  }
 }
 
 layer {
@@ -91,12 +81,6 @@ layer {
     num_output: 32
     pad: 1
     kernel_size: 3
-  }
-  param {
-    lr_mult: 0
-  }
-  param {
-    lr_mult: 0
   }
 }
 
@@ -128,12 +112,6 @@ layer {
     pad: 1
     kernel_size: 3
   }
-  param {
-    lr_mult: 0
-  }
-  param {
-    lr_mult: 0
-  }
 }
 layer {
   bottom: "conv2"
@@ -162,12 +140,6 @@ layer {
     num_output: 128
     pad: 1
     kernel_size: 3
-  }
-  param {
-    lr_mult: 0
-  }
-  param {
-    lr_mult: 0
   }
 }
 
@@ -199,12 +171,6 @@ layer {
     num_output: 128
     pad: 1
     kernel_size: 3
-  }
-  param {
-    lr_mult: 0
-  }
-  param {
-    lr_mult: 0
   }
 }
 layer {
@@ -263,12 +229,6 @@ layer {
   type: "InnerProduct"
   inner_product_param {
     num_output: 10
-  }
-  param {
-    lr_mult: 0
-  }
-  param {
-    lr_mult: 0
   }
 }
 layer {
