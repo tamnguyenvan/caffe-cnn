@@ -1,5 +1,5 @@
-net: "cnn/cnn.prototxt"
-test_iter: 1000
+net: "caffe-cnn/cnn/cnn.prototxt"
+test_iter: 141
 test_interval: 1000
 base_lr: 0.001
 lr_policy: "step"
