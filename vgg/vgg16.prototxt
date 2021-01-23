@@ -493,3 +493,10 @@ layer {
     top_k: 5
   }
 }
+
+layer {
+  name: "prob"
+  type: "Softmax"
+  bottom: "fc8-10"
+  top: "prob"
+}
