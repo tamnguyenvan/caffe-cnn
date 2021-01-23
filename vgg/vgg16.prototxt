@@ -485,7 +485,7 @@ layer {
 layer {
   name: "accuracy/top5"
   type: "Accuracy"
-  bottom: "fc8"
+  bottom: "fc8-10"
   bottom: "label"
   top: "accuracy@5"
   include: { phase: TEST }
