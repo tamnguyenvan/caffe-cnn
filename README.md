@@ -1,2 +1,1 @@
-# resnet-caffe
-ResNet caffe
+# Caffe-cnn
