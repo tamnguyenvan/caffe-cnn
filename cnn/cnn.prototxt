@@ -1,3 +1,7 @@
+# Enter your network definition here.
+# Use Shift+Enter to update the visualization.
+# Enter your network definition here.
+# Use Shift+Enter to update the visualization.
 name: "CNN"
 layer {
   name: "data"
@@ -43,8 +47,8 @@ layer {
 }
 layer {
   bottom: "data"
-  top: "conv_first"
-  name: "conv_first"
+  top: "conv_init"
+  name: "conv_init"
   type: "Convolution"
   convolution_param {
     num_output: 32
@@ -61,16 +65,16 @@ layer {
 }
 
 layer {
-  bottom: "conv_first"
-  top: "conv_first"
-  name: "relu_first"
+  bottom: "conv_init"
+  top: "conv_init"
+  name: "relu_init"
   type: "ReLU"
 }
 layer {
-  name: "pool_first"
+  bottom: "conv_init"
+  top: "pool_init"
+  name: "pool_init"
   type: "Pooling"
-  bottom: "relu_first"
-  top: "pool_first"
   pooling_param {
     pool: MAX
     kernel_size: 3
@@ -79,7 +83,7 @@ layer {
 }
 
 layer {
-  bottom: "pool_first"
+  bottom: "pool_init"
   top: "conv1"
   name: "conv1"
   type: "Convolution"
@@ -213,7 +217,7 @@ layer {
 layer {
   name: "fc5"
   type: "InnerProduct"
-  bottom: "relu4"
+  bottom: "conv4"
   top: "fc5"
   param {
     lr_mult: 1
