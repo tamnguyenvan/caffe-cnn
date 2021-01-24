@@ -333,19 +333,11 @@ layer {
   }
 }
 layer {
-  name: "accuracy"
-  type: "Accuracy"
+  name: "prob"
+  type: "Softmax"
   bottom: "fc8-10"
-  bottom: "label"
-  top: "accuracy"
-  include {
+  top: "prob"
+  include: {
     phase: TEST
   }
-}
-layer {
-  name: "loss"
-  type: "SoftmaxWithLoss"
-  bottom: "fc8-10"
-  bottom: "label"
-  top: "loss"
 }
