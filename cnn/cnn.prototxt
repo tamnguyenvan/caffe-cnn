@@ -1,3 +1,5 @@
+# Enter your network definition here.
+# Use Shift+Enter to update the visualization.
 name: "CNN"
 layer {
   name: "data"
@@ -6,7 +8,7 @@ layer {
     phase: TRAIN
   }
  transform_param {
-    crop_size: 224
+    crop_size: 128
     mean_value: 104
     mean_value: 117
     mean_value: 123
@@ -27,7 +29,7 @@ layer {
     phase: TEST
   }
  transform_param {
-    crop_size: 224
+    crop_size: 128
     mean_value: 104
     mean_value: 117
     mean_value: 123
@@ -41,39 +43,10 @@ layer {
   top: "data"
   top: "label"
 }
+
+
 layer {
   bottom: "data"
-  top: "conv_init"
-  name: "conv_init"
-  type: "Convolution"
-  convolution_param {
-    num_output: 32
-    pad: 3
-    kernel_size: 7
-    stride: 2
-  }
-}
-
-layer {
-  bottom: "conv_init"
-  top: "conv_init"
-  name: "relu_init"
-  type: "ReLU"
-}
-layer {
-  bottom: "conv_init"
-  top: "pool_init"
-  name: "pool_init"
-  type: "Pooling"
-  pooling_param {
-    pool: MAX
-    kernel_size: 3
-    stride: 2
-  }
-}
-
-layer {
-  bottom: "pool_init"
   top: "conv1"
   name: "conv1"
   type: "Convolution"
@@ -143,7 +116,6 @@ layer {
   }
 }
 
-
 layer {
   bottom: "conv3"
   top: "conv3"
@@ -179,11 +151,22 @@ layer {
   name: "relu4"
   type: "ReLU"
 }
+layer {
+  name: "pool4"
+  type: "Pooling"
+  bottom: "conv4"
+  top: "pool4"
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
 
 layer {
   name: "fc5"
   type: "InnerProduct"
-  bottom: "conv4"
+  bottom: "pool4"
   top: "fc5"
   param {
     lr_mult: 1
