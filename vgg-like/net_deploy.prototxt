@@ -1,9 +1,15 @@
 name: "CaffeNet"
-input: "data"
-input_dim: 1
-input_dim: 3
-input_dim: 128
-input_dim: 128
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param { shape: { dim: 1 dim: 3 dim: 128 dim: 128 } }
+  transform_param {
+    mean_value: 104
+    mean_value: 117
+    mean_value: 123
+ }
+}
 layer {
   name: "conv1"
   type: "Convolution"
