@@ -12,10 +12,6 @@ layer {
     batch_size: 32
     backend: LMDB
   }
-  transform_param {
-    crop_size: 128
-    mirror: true
- }
 }
 layer {
   name: "data"
@@ -26,14 +22,10 @@ layer {
     phase: TEST
   }
   data_param {
-    source: "./input/val_lmdb"
+    source: "./input/validation_lmdb"
     batch_size: 32
     backend: LMDB
   }
-    transform_param {
-    crop_size: 128
-    mirror: true
- }
 }
 layer {
   name: "conv1"
@@ -339,10 +331,10 @@ layer {
   }
 }
 layer {
-  name: "fc8"
+  name: "fc8-10"
   type: "InnerProduct"
   bottom: "fc7"
-  top: "fc8"
+  top: "fc8-10"
   param {
     lr_mult: 1
     decay_mult: 1
@@ -366,7 +358,7 @@ layer {
 layer {
   name: "accuracy"
   type: "Accuracy"
-  bottom: "fc8"
+  bottom: "fc8-10"
   bottom: "label"
   top: "accuracy"
   include {
@@ -376,7 +368,7 @@ layer {
 layer {
   name: "loss"
   type: "SoftmaxWithLoss"
-  bottom: "fc8"
+  bottom: "fc8-10"
   bottom: "label"
   top: "loss"
 }
