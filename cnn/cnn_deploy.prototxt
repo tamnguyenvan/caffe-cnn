@@ -341,8 +341,8 @@ layer {
 }
 
 layer {
-  name: "loss"
-  type: "SoftmaxWithLoss"
+  name: "prob"
+  type: "Softmax"
   bottom: "fc8-10"
-  top: "loss"
+  top: "prob"
 }
