@@ -12,6 +12,12 @@ layer {
     batch_size: 32
     backend: LMDB
   }
+  transform_param {
+    mean_value: 104
+    mean_value: 117
+    mean_value: 123
+    mirror: true
+ }
 }
 layer {
   name: "data"
@@ -26,6 +32,12 @@ layer {
     batch_size: 32
     backend: LMDB
   }
+  transform_param {
+    mean_value: 104
+    mean_value: 117
+    mean_value: 123
+    mirror: true
+ }
 }
 layer {
   name: "conv1"
