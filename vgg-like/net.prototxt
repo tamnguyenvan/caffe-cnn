@@ -13,6 +13,7 @@ layer {
     backend: LMDB
   }
   transform_param {
+    crop_size: 128
     mean_value: 104
     mean_value: 117
     mean_value: 123
@@ -33,6 +34,7 @@ layer {
     backend: LMDB
   }
   transform_param {
+    crop_size: 128
     mean_value: 104
     mean_value: 117
     mean_value: 123
