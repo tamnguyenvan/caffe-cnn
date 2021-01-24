@@ -2,43 +2,22 @@ name: "CNN"
 
 layer {
   name: "data"
-  type: "Input"
+  type: "Data"
+  include {
+    phase: TEST
+  }
+  input_param: {shape: {dim: 1 dim: 3 dim: 128 dim: 128 }}
+  transform_param {
+    mean_value: 104
+    mean_value: 117
+    mean_value: 123
+ }
   top: "data"
-  input_param { shape: { dim: 1 dim: 3 dim: 224 dim: 224 } }
 }
+
+
 layer {
   bottom: "data"
-  top: "conv_init"
-  name: "conv_init"
-  type: "Convolution"
-  convolution_param {
-    num_output: 32
-    pad: 3
-    kernel_size: 7
-    stride: 2
-  }
-}
-
-layer {
-  bottom: "conv_init"
-  top: "conv_init"
-  name: "relu_init"
-  type: "ReLU"
-}
-layer {
-  bottom: "conv_init"
-  top: "pool_init"
-  name: "pool_init"
-  type: "Pooling"
-  pooling_param {
-    pool: MAX
-    kernel_size: 3
-    stride: 2
-  }
-}
-
-layer {
-  bottom: "pool_init"
   top: "conv1"
   name: "conv1"
   type: "Convolution"
@@ -108,7 +87,6 @@ layer {
   }
 }
 
-
 layer {
   bottom: "conv3"
   top: "conv3"
@@ -144,11 +122,22 @@ layer {
   name: "relu4"
   type: "ReLU"
 }
+layer {
+  name: "pool4"
+  type: "Pooling"
+  bottom: "conv4"
+  top: "pool4"
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
 
 layer {
   name: "fc5"
   type: "InnerProduct"
-  bottom: "conv4"
+  bottom: "pool4"
   top: "fc5"
   param {
     lr_mult: 1
@@ -196,9 +185,13 @@ layer {
     num_output: 10
   }
 }
+
 layer {
   name: "prob"
   type: "Softmax"
   bottom: "fc6"
   top: "prob"
+  include {
+    phase: TEST
+  }
 }
